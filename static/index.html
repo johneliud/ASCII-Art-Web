@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>ASCII Art Web</title>
+  </head>
+
+  <body>
+    <header>
+      <div></div>
+
+      <h1>ASCII Art Web</h1>
+
+      <div class="theme-modes">
+        <p>Toggle Theme</p>
+        <ion-icon class="sunny" name="sunny"></ion-icon>
+        <ion-icon class="moon" name="moon"></ion-icon>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="upper">
+        <form action="/serve" method="post">
+          <div class="left">
+            <textarea
+              name=""
+              id="inputArea"
+              cols="30"
+              rows="10"
+              placeholder="Enter input"
+              required
+            ></textarea>
+          </div>
+
+          <div class="right">
+            <div>
+              <h4>Select a banner file</h4>
+
+              <select name="banners" id="bannerSelect">
+                <option value="Shadow">Shadow</option>
+                <option value="Standard">Standard</option>
+                <option value="Thinkertoy">Thinkertoy</option>
+              </select>
+            </div>
+
+            <input type="button" value="Submit" />
+          </div>
+        </form>
+      </div>
+
+      <div class="lower"></div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Ion-icons link-->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
