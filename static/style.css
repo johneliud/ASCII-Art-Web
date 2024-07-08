@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 20px;
+}
+
+body {
+  background-color: rgb(180, 180, 180);
+  display: grid;
+  place-items: center;
+  margin: 50px auto;
+  transition: 1s ease-in-out;
+}
+
+body.dark-mode,
+.container.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0 auto 10px;
+}
+
+header h1 {
+  font-size: 40px;
+}
+
+header .theme-modes {
+  position: relative;
+  transition: 0.1s ease-in-out;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 2;
+}
+
+header .theme-modes p {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 3px 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  left: -90px;
+  top: 6px;
+  display: none;
+}
+
+header .theme-modes:hover p {
+  display: block;
+}
+
+header .theme-modes .sunny {
+  display: none;
+}
+
+header .theme-modes .sunny.active {
+  display: block;
+}
+
+header .theme-modes .moon.inactive {
+  display: none;
+}
+
+.container {
+  background-color: white;
+  width: 90%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: 1s ease-in-out;
+}
+.container.dark-mode {
+  box-shadow: 0 0 20px rgb(255, 255, 255);
+}
+
+.upper form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upper form .left,
+.upper form .right {
+  padding: 10px;
+}
+
+.upper form .left textarea {
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  border: 2px solid #000;
+  resize: none;
+}
+
+.upper form .right {
+  display: grid;
+  gap: 90px;
+}
+
+.upper form .right div {
+  display: grid;
+  gap: 20px;
+}
+
+.upper form .right div select {
+  padding: 5px 10px;
+}
+
+.upper form .right input {
+  background-color: rgb(180, 180, 180);
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.container .lower {
+  margin: 50px auto 0;
+}
+
+@media screen and (min-width: 926px) {
+  .upper form .left {
+    width: 85%;
+  }
+  .upper form .left textarea {
+    width: 90%;
+  }
+}
