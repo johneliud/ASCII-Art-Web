@@ -126,6 +126,16 @@ header .theme-modes .moon.inactive {
   margin: 50px auto 0;
 }
 
+footer {
+  position: absolute;
+  bottom: 10px;
+}
+
+footer a {
+  color: #000;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 926px) {
   .upper form .left {
     width: 85%;
