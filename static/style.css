@@ -1,146 +1,186 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
+:root {
+  --font-family: 'Josefin Sans', sans-serif;
+  --transition: 1s ease;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 20px;
+  font-family: var(--font-family);
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
 }
 
 body {
-  background-color: rgb(180, 180, 180);
-  display: grid;
-  place-items: center;
-  margin: 50px auto;
-  transition: 1s ease-in-out;
-}
-
-body.dark-mode,
-.container.dark-mode {
-  background-color: black;
-  color: white;
+  width: 1200px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 10px 20px;
+  transition: var(--transition);
 }
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px auto;
+  padding: 10px;
   width: 90%;
-  margin: 0 auto 10px;
-}
-
-header h1 {
-  font-size: 40px;
 }
 
 header .theme-modes {
-  position: relative;
-  transition: 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 10%;
+  z-index: 5;
   cursor: pointer;
-  padding: 5px;
-  z-index: 2;
+  transition: var(--transition);
 }
 
 header .theme-modes p {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 3px 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  left: -90px;
-  top: 6px;
+  font-size: 10px;
+  color: black;
+  border-radius: 10px;
+  padding: 3px 0;
   display: none;
+  transition: var(--transition);
 }
-
 header .theme-modes:hover p {
-  display: block;
+  display: flex;
+}
+body.dark-mode .theme-modes:hover p {
+  color: white;
 }
 
 header .theme-modes .sunny {
   display: none;
 }
-
-header .theme-modes .sunny.active {
-  display: block;
+header .theme-modes.active .sunny {
+  display: flex;
 }
-
-header .theme-modes .moon.inactive {
+header .theme-modes.active .moon {
   display: none;
 }
 
 .container {
-  background-color: white;
   width: 90%;
-  padding: 20px;
+  margin: 20px auto;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: 1s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  transition: var(--transition);
 }
 .container.dark-mode {
   box-shadow: 0 0 20px rgb(255, 255, 255);
 }
 
-.upper form {
+.container .upper {
+  width: 85%;
+  display: grid;
+  place-items: center;
+}
+
+.container form {
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-.upper form .left,
-.upper form .right {
-  padding: 10px;
+.container form .left {
+  width: 70%;
 }
 
-.upper form .left textarea {
+.container form .left textarea {
+  width: 100%;
   padding: 10px;
-  outline: none;
+  font-size: 24px;
+  border: 1px solid black;
   border-radius: 10px;
-  border: 2px solid #000;
+  outline: none;
   resize: none;
 }
 
-.upper form .right {
-  display: grid;
-  gap: 90px;
+.container form .right {
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
-.upper form .right div {
-  display: grid;
-  gap: 20px;
+.container form .right select {
+  padding: 4px 8px;
 }
 
-.upper form .right div select {
-  padding: 5px 10px;
-}
-
-.upper form .right input {
-  background-color: rgb(180, 180, 180);
-  padding: 10px 20px;
+.container form .right input {
+  width: 100%;
+  padding: 5px 15px;
   border-radius: 10px;
   border: none;
+  background-color: black;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
+}
+.container.dark-mode form .right input {
+  background-color: white;
+  color: black;
+}
+
+.line {
+  width: 80%;
+  background-color: black;
+  height: 1px;
+  margin: 25px auto;
+}
+body.dark-mode .line {
+  background-color: white;
 }
 
 .container .lower {
-  margin: 50px auto 0;
+  max-width: 90%;
+  overflow-x: auto;
+}
+
+.container .lower pre {
+  width: 100%;
+  line-height: 1.2;
+  white-space: pre;
+  word-wrap: break-word;
+  font-family: monospace;
+  word-spacing: normal;
+  word-break: normal;
 }
 
 footer {
-  position: absolute;
-  bottom: 10px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  margin: 20px auto 0;
 }
 
 footer a {
-  color: #000;
+  color: black;
   cursor: pointer;
 }
-
-@media screen and (min-width: 926px) {
-  .upper form .left {
-    width: 85%;
-  }
-  .upper form .left textarea {
-    width: 90%;
-  }
+body.dark-mode footer a {
+  color: white;
 }
