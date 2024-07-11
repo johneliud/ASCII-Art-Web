@@ -1,13 +1,9 @@
-const themesContainer = document.querySelector(".theme-modes");
-const lightThemeBtn = document.querySelector(".theme-modes .sunny")
-const darkThemeBtn = document.querySelector(".theme-modes .moon")
+const themesContainer = document.querySelector('.theme-modes');
 
 const toggleTheme = () => {
-    document.querySelector("body").classList.toggle("dark-mode")
-    document.querySelector(".container").classList.toggle("dark-mode")
+  document.querySelector('body').classList.toggle('dark-mode');
+  document.querySelector('.container').classList.toggle('dark-mode');
+  themesContainer.classList.toggle('active');
+};
 
-    lightThemeBtn.classList.toggle("active")
-    darkThemeBtn.classList.toggle("inactive")
-}
-
-themesContainer.addEventListener("click", toggleTheme)
+themesContainer.addEventListener('click', toggleTheme);
