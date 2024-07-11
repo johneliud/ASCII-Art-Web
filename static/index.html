@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/static/style.css" />
 
     <title>ASCII Art Web</title>
   </head>
@@ -24,10 +24,10 @@
 
     <div class="container">
       <div class="upper">
-        <form action="/serve" method="post">
+        <form action="/ascii-art" method="post">
           <div class="left">
             <textarea
-              name=""
+              name="input"
               id="inputArea"
               cols="30"
               rows="10"
@@ -38,21 +38,27 @@
 
           <div class="right">
             <div>
-              <h4>Select a banner file</h4>
+              <h4>Select banner file:</h4>
 
-              <select name="banners" id="bannerSelect">
-                <option value="Shadow">Shadow</option>
-                <option value="Standard">Standard</option>
-                <option value="Thinkertoy">Thinkertoy</option>
+              <select name="banner" id="bannerSelect">
+                <option value="standard">Standard</option>
+                <option value="shadow">Shadow</option>
+                <option value="thinkertoy">Thinkertoy</option>
               </select>
             </div>
 
-            <input type="button" value="Submit" />
+            <input type="submit" value="Submit" />
           </div>
         </form>
       </div>
 
-      <div class="lower"></div>
+      <div class="line"></div>
+
+      <div class="lower">
+        {{if .AsciiArt}}
+        <pre>{{.AsciiArt}}</pre>
+        {{end}}
+      </div>
     </div>
 
     <footer>
@@ -65,7 +71,7 @@
       </a>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
 
     <!-- Ion-icons link-->
     <script
