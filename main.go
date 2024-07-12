@@ -12,6 +12,5 @@ func main() {
 		fmt.Println("Usage: go run .")
 		return
 	}
-	
 	serverhandlers.StartServer()
 }
