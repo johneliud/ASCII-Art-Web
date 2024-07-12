@@ -16,9 +16,10 @@ type Page struct {
 }
 
 /*
-Function HomeHandler is a HTTP handler function that serves the home page of the ASCII Art Web application. It checks if the requested URL path is the root ("/") and returns a 404 Not Found status if not. If the root path is requested, it attempts to parse and execute the "static/index.html" template file. If the template file cannot be parsed, it returns a 500 Internal Server Error status.
+Function HomeHandler is an HTTP handler function that serves the home page of the ASCII Art Web application. If the root path is requested, it attempts to parse and execute the "static/index.html" template file.
 */
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
+	// Checks if the requested URL path is the root ("/") and returns a 404 Not Found status if not
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
