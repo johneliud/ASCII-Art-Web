@@ -1,31 +1,30 @@
 package printart
 
 import (
-	"os"
+	"fmt"
 	"strings"
 )
 
 /*
 PrintArt takes a slice of strings representing ASCII art, an input string, and a strings.Builder. It prints the input string as ASCII art using the provided ASCII art slice. The ASCII art is constructed by replacing certain characters in the input string with their corresponding ASCII representations. If the input string contains unprintable sequences or characters not present in the ASCII manual, an error message is printed and the program exits.
 */
-func PrintArt(bannerFileSlice []string, inputString string, output *strings.Builder) {
+func PrintArt(bannerFileSlice []string, inputString string, output *strings.Builder) error {
 	switch inputString {
 	case "\\n":
 		output.WriteString("\n")
-		return
+		return nil
 	case "":
-		return
+		return nil
 	case "\\t":
 		output.WriteString("    ")
-		return
+		return nil
 	}
 
 	// Handle unprintable sequences
 	unprintableSequences := []string{"\\a", "\\b", "\\v", "\\f", "\\r"}
 	for _, seq := range unprintableSequences {
 		if strings.Contains(inputString, seq) {
-			output.WriteString("Input string contains an unprintable sequence.")
-			os.Exit(1)
+			return fmt.Errorf("input string contains an unprintable sequence")
 		}
 	}
 	tabCharacterText := strings.ReplaceAll(inputString, "\\t", "    ")
@@ -36,8 +35,7 @@ func PrintArt(bannerFileSlice []string, inputString string, output *strings.Buil
 	for _, argument := range splitArguments {
 		for _, char := range argument {
 			if char < 32 || char > 126 {
-				output.WriteString("Input string contains a character absent in the ASCII manual.")
-				os.Exit(1)
+				return fmt.Errorf("input string contains a character absent in the ASCII manual")
 			}
 		}
 	}
@@ -57,4 +55,5 @@ func PrintArt(bannerFileSlice []string, inputString string, output *strings.Buil
 			output.WriteString("\n")
 		}
 	}
+	return nil
 }
