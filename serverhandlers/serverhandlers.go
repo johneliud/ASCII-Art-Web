@@ -27,7 +27,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpl, err := template.ParseFiles("static/index.html")
 	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
 	}
 	// Render the HTML template file and write the output to the HTTP response writer
@@ -40,7 +40,7 @@ Function AsciiArtHandler is a HTTP handler function that processes ASCII art req
 func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	// Checks if the request method is POST. If not, it returns a 405 Method Not Allowed status
 	if r.Method != http.MethodPost {
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -50,7 +50,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Validates the input string. If it is empty, it returns a 400 Bad Request status.
 	if inputString == "" {
-		http.Error(w, "Input string is required", http.StatusBadRequest)
+		http.Error(w, "input string is required", http.StatusBadRequest)
 		return
 	}
 
@@ -82,7 +82,7 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	// Parses and executes the "static/index.html" template file with the Page data and returns a 500 Internal Server Error status if the template cannot be found
 	tmpl, err := template.ParseFiles("static/index.html")
 	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
 	}
 	tmpl.Execute(w, data)
