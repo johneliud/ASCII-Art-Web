@@ -4,9 +4,9 @@ import (
 	"os"
 	"strings"
 )
-/*
-// PrintArt takes a slice of strings representing ASCII art, an input string, and a strings.Builder. It prints the input string as ASCII art using the provided ASCII art slice. The ASCII art is constructed by replacing certain characters in the input string with their corresponding ASCII representations. If the input string contains unprintable sequences or characters not present in the ASCII manual, an error message is printed and the program exits.
 
+/*
+PrintArt takes a slice of strings representing ASCII art, an input string, and a strings.Builder. It prints the input string as ASCII art using the provided ASCII art slice. The ASCII art is constructed by replacing certain characters in the input string with their corresponding ASCII representations. If the input string contains unprintable sequences or characters not present in the ASCII manual, an error message is printed and the program exits.
 */
 func PrintArt(bannerFileSlice []string, inputString string, output *strings.Builder) {
 	switch inputString {
