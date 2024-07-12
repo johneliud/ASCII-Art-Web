@@ -60,11 +60,19 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	bannerFilePath := fmt.Sprintf("banners/%s.txt", bannerFile)
-	bannerFileSlice := readandprocess.ReadAndProcess(bannerFilePath)
+	bannerFileSlice, err := readandprocess.ReadAndProcess(bannerFilePath)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("banner file error: %v", err), http.StatusInternalServerError)
+		return
+	}
 
 	var output strings.Builder
 	// Generates ASCII art using the PrintArt function and writes the output to a strings.Builder
-	printart.PrintArt(bannerFileSlice, inputString, &output)
+	err = printart.PrintArt(bannerFileSlice, inputString, &output)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 
 	// Creates a Page struct with the generated ASCII art
 	data := Page{
