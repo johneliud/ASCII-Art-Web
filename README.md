@@ -4,4 +4,4 @@ This project consists in creating and running a server, in which it will be poss
 
 ## Project Overview
 
-![](./img/light-mode)
+![](./img/preview.png)
