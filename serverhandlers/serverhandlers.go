@@ -111,7 +111,7 @@ func StartServer() {
 		fmt.Println("Port number must be between 1024 and 65535")
 		return
 	}
-	port = ":" + portSubstring
+	port = ":" + strconv.Itoa(portNumber)
 
 	log.Printf("Server running on http://localhost%v\n", port)
 	http.ListenAndServe(port, nil)
