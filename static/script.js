@@ -1,9 +1,11 @@
-const themesContainer = document.querySelector('.theme-modes');
+const body = document.querySelector('body');
+const containerEl = document.querySelector('.container');
+const themeToggler = document.querySelector('.theme-modes');
 
 const toggleTheme = () => {
-  document.querySelector('body').classList.toggle('dark-mode');
-  document.querySelector('.container').classList.toggle('dark-mode');
-  themesContainer.classList.toggle('active');
+  body.classList.toggle('dark-mode');
+  containerEl.classList.toggle('dark-mode');
+  themeToggler.classList.toggle('active');
 };
 
-themesContainer.addEventListener('click', toggleTheme);
+themeToggler.addEventListener('click', toggleTheme);
