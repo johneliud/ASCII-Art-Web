@@ -16,7 +16,7 @@ type Page struct {
 }
 
 /*
-Function HomeHandler is an HTTP handler function that serves the home page of the ASCII Art Web application. If the root path is requested, it attempts to parse and execute the "static/index.html" template file.
+Function HomeHandler is an HTTP handler function that serves the home page of the ASCII Art Web application. If the root path is requested, it attempts to parse and execute the "templates/index.html" template file.
 */
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// Checks if the requested URL path is the root ("/") and returns a 404 Not Found status if not
@@ -25,7 +25,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl, err := template.ParseFiles("static/index.html")
+	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
@@ -79,8 +79,8 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		AsciiArt: output.String(),
 	}
 
-	// Parses and executes the "static/index.html" template file with the Page data and returns a 500 Internal Server Error status if the template cannot be found
-	tmpl, err := template.ParseFiles("static/index.html")
+	// Parses and executes the "templates/index.html" template file with the Page data and returns a 500 Internal Server Error status if the template cannot be found
+	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
@@ -96,6 +96,8 @@ func StartServer() {
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/ascii-art", AsciiArtHandler)
 
-	log.Println("Server running on http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	const port = ":8080"
+
+	log.Printf("Server running on http://localhost%v\n", port)
+	http.ListenAndServe(port, nil)
 }
