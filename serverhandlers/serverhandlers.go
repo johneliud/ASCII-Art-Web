@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"text/template"
 
@@ -96,7 +97,21 @@ func StartServer() {
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/ascii-art", AsciiArtHandler)
 
-	const port = ":8080"
+	port := ":8080"
+
+	portSubstring := port[1:]
+	portNumber, err := strconv.Atoi(portSubstring)
+	if err != nil {
+		fmt.Println("Error converting to integer type:", err)
+		return
+	}
+
+	// Check if the port number is within the valid range
+	if portNumber < 1024 || portNumber > 65535 {
+		fmt.Println("Port number must be between 1024 and 65535")
+		return
+	}
+	port = ":" + portSubstring
 
 	log.Printf("Server running on http://localhost%v\n", port)
 	http.ListenAndServe(port, nil)
