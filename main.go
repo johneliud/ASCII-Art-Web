@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 1 {
-		fmt.Println("Usage: go run .")
+	if len(os.Args) != 2 {
+		fmt.Println("Usage: go run . [:PORT]")
 		return
 	}
 	serverhandlers.StartServer()
