@@ -3,25 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="/static/style.css" />
-
     <title>ASCII Art Web</title>
   </head>
-
   <body>
     <header>
       <div></div>
-
       <h1>ASCII Art Web</h1>
-
       <div class="theme-modes">
         <p>Toggle Theme</p>
         <ion-icon class="sunny" name="sunny"></ion-icon>
         <ion-icon class="moon" name="moon"></ion-icon>
       </div>
     </header>
-
     <div class="container">
       <div class="upper">
         <form action="/ascii-art" method="post">
@@ -33,34 +27,28 @@
               rows="10"
               placeholder="Enter input"
               required
-            ></textarea>
+            >{{.Input}}</textarea>
           </div>
-
           <div class="right">
             <div>
               <h4>Select banner file:</h4>
-
               <select name="banner" id="bannerSelect">
                 <option value="standard">Standard</option>
                 <option value="shadow">Shadow</option>
                 <option value="thinkertoy">Thinkertoy</option>
               </select>
             </div>
-
             <input type="submit" value="Submit" />
           </div>
         </form>
       </div>
-
       <div class="line"></div>
-
       <div class="lower">
-        {{if .AsciiArt}}
+        {{if .AsciiArt}}       
         <pre>{{.AsciiArt}}</pre>
         {{end}}
       </div>
     </div>
-
     <footer>
       <a
         href="http://github.com/johneliud"
@@ -70,9 +58,7 @@
         <ion-icon name="logo-github"></ion-icon>
       </a>
     </footer>
-
     <script src="/static/script.js"></script>
-
     <!-- Ion-icons link-->
     <script
       type="module"
