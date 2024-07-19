@@ -2,18 +2,19 @@ package serverhandlers
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
-	"text/template"
 
 	"github.com/johneliud/ASCII-Art-Web/printart"
 	"github.com/johneliud/ASCII-Art-Web/readandprocess"
 )
 
 type Page struct {
-	AsciiArt string
+	AsciiArt, Input string
 }
 
 /*
@@ -25,7 +26,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-
 	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)
@@ -44,29 +44,24 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-
 	// Retrieves the input string and banner file from the request form data
 	inputString := r.FormValue("input")
 	bannerFile := r.FormValue("banner")
-
 	// Validates the input string. If it is empty, it returns a 400 Bad Request status.
 	if inputString == "" {
-		http.Error(w, "input string is required", http.StatusBadRequest)
+		http.Error(w, "bad request", http.StatusBadRequest)
 		return
 	}
-
 	// Sets the default banner file if none is provided
 	if bannerFile == "" {
 		bannerFile = "standard"
 	}
-
 	bannerFilePath := fmt.Sprintf("banners/%s.txt", bannerFile)
 	bannerFileSlice, err := readandprocess.ReadAndProcess(bannerFilePath)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("banner file error: %v", err), http.StatusInternalServerError)
 		return
 	}
-
 	var output strings.Builder
 	// Generates ASCII art using the PrintArt function and writes the output to a strings.Builder
 	err = printart.PrintArt(bannerFileSlice, inputString, &output)
@@ -74,12 +69,11 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
 	// Creates a Page struct with the generated ASCII art
 	data := Page{
+		Input:    inputString,
 		AsciiArt: output.String(),
 	}
-
 	// Parses and executes the "templates/index.html" template file with the Page data and returns a 500 Internal Server Error status if the template cannot be found
 	tmpl, err := template.ParseFiles("templates/index.html")
 	if err != nil {
@@ -96,23 +90,18 @@ func StartServer() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/", HomeHandler)
 	http.HandleFunc("/ascii-art", AsciiArtHandler)
-
-	port := ":8080"
-
-	portSubstring := port[1:]
-	portNumber, err := strconv.Atoi(portSubstring)
+	
+	port := os.Args[1]
+	portNum, err := strconv.Atoi(port[1:])
 	if err != nil {
-		fmt.Println("Error converting to integer type:", err)
+		fmt.Printf("Cannot convert %v to integer: %v\n", port[1:], err)
+	}
+	// Check if portNum is within the valid range
+	if portNum < 1024 || portNum > 65535 {
+		fmt.Println("Port to running the server should be within the range 1024 to 65535")
 		return
 	}
-
-	// Check if the port number is within the valid range
-	if portNumber < 1024 || portNumber > 65535 {
-		fmt.Println("Port number must be between 1024 and 65535")
-		return
-	}
-	port = ":" + strconv.Itoa(portNumber)
-
+	port = ":" + strconv.Itoa(portNum)
 	log.Printf("Server running on http://localhost%v\n", port)
 	http.ListenAndServe(port, nil)
 }
