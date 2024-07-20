@@ -27,7 +27,9 @@
               rows="10"
               placeholder="Enter input"
               required
-            >{{.Input}}</textarea>
+            >
+{{.Input}}</textarea
+            >
           </div>
           <div class="right">
             <div>
@@ -44,7 +46,7 @@
       </div>
       <div class="line"></div>
       <div class="lower">
-        {{if .AsciiArt}}       
+        {{if .AsciiArt}}
         <pre>{{.AsciiArt}}</pre>
         {{end}}
       </div>
