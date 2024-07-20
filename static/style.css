@@ -139,7 +139,7 @@ body.dark-mode .line {
   background-color: white;
 }
 .container .lower {
-    /* max-width: 95% */
+  /* max-width: 95% */
   width: 95%;
   overflow-x: auto;
 }
@@ -168,18 +168,18 @@ footer a {
 body.dark-mode footer a {
   color: white;
 }
-@media only screen and (min-width: 768px) and (max-width: 925px){
-    body {
-        width: 100%;
-    }
-    .container {
-        width: 90%;
-        padding: 30px 10px;
-    }
-    .container .upper {
-        width: 95%;
-    }
-    .container .lower {
-        max-width: 95%;
-    }
+@media only screen and (min-width: 768px) and (max-width: 925px) {
+  body {
+    width: 100%;
+  }
+  .container {
+    width: 90%;
+    padding: 30px 10px;
+  }
+  .container .upper {
+    width: 95%;
+  }
+  .container .lower {
+    max-width: 95%;
+  }
 }
