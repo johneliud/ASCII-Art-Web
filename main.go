@@ -9,7 +9,7 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println("Usage: go run . [:PORT]")
+		fmt.Println("Usage: go run . [PORT]")
 		return
 	}
 	serverhandlers.StartServer()
