@@ -6,9 +6,10 @@ import (
 	"strings"
 
 	"github.com/johneliud/ASCII-Art-Web/checkfilevalidity"
+	"github.com/johneliud/ASCII-Art-Web/downloadbanner"
 )
 
-// Function ReadAndProcess accepts a banner file string and returns a split slice of string. The function reads and checks for file integrity before returning a split version of it.
+// Function ReadAndProcess accepts a banner file string and returns a split slice of string. The function reads and checks for file integrity, and downloads a new file if needed before returning a split version of it.
 func ReadAndProcess(bannerFile string) ([]string, error) {
 	bannerFileData, err := os.ReadFile(bannerFile)
 	if err != nil {
@@ -30,10 +31,23 @@ func ReadAndProcess(bannerFile string) ([]string, error) {
 	}
 
 	if fileHash != expectedHashValue {
-		return nil, fmt.Errorf("invalid file hash for %v. corrupt file", bannerFile)
+		fmt.Printf("File %v might be corrupted. Deleting and downloading a new file.\n", bannerFile)
+		err = os.Remove(bannerFile)
+		if err != nil {
+			return nil, fmt.Errorf("an unexpected error occurred while deleting the corrupted file. %v", err)
+		}
+
+		err = downloadbanner.DownloadBannerFile(bannerFile)
+		if err != nil {
+			return nil, fmt.Errorf("an unexpected error occurred while downloading the new file. %v", err)
+		}
+
+		bannerFileData, err = os.ReadFile(bannerFile)
+		if err != nil {
+			return nil, fmt.Errorf("error reading %v file after downloading: %v", bannerFile, err)
+		}
 	}
 
-	// Replace all occurrences of "\r\n" with "\n" to normalize line endings
 	splitBannerFileData := strings.ReplaceAll(string(bannerFileData), "\r\n", "\n")
 	return strings.Split(splitBannerFileData, "\n"), nil
 }
