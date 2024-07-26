@@ -11,7 +11,7 @@
       <div></div>
       <h1>ASCII Art Web</h1>
       <div class="theme-modes">
-        <p>Toggle Theme</p>
+        <!-- <p>Toggle Theme</p> -->
         <ion-icon class="sunny" name="sunny"></ion-icon>
         <ion-icon class="moon" name="moon"></ion-icon>
       </div>
@@ -33,12 +33,16 @@
           </div>
           <div class="right">
             <div>
-              <h4>Select banner:</h4>
-              <select name="banner" id="bannerSelect">
-                <option value="standard">Standard</option>
-                <option value="shadow">Shadow</option>
-                <option value="thinkertoy">Thinkertoy</option>
-              </select>
+              <div class="banner-tag">
+                <h4>Select banner:</h4>
+              </div>
+              <div class="select-tag">
+                <select name="banner" id="bannerSelect">
+                  <option value="standard">Standard</option>
+                  <option value="shadow">Shadow</option>
+                  <option value="thinkertoy">Thinkertoy</option>
+                </select>
+              </div>
             </div>
             <input type="submit" value="Submit" />
           </div>
@@ -46,9 +50,9 @@
       </div>
       <div class="line"></div>
       <div class="lower">
-        {{if .AsciiArt}}
+        <!-- {{if .AsciiArt}}     -->
         <pre>{{.AsciiArt}}</pre>
-        {{end}}
+        <!-- {{end}} -->
       </div>
     </div>
     <footer>
