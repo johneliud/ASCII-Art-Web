@@ -4,7 +4,7 @@ This project consists in creating and running a server, in which it will be poss
 
 The technologies used to build the project include Golang for the web server operations, HTML, CSS and JavaScript for the frontend and containerized with Docker.
 
-## Project Overview
+## Project Preview
 
 ![](./img/preview)
 
@@ -46,21 +46,15 @@ From this point, the user can interact with the program in a variety of ways inc
 
 - Submitting their input for processing
 
-### Examples
-Type `Hello!` in the textarea and click on the Submit button. The expected output should be as the one shown below.
-
-![](./img/preview-2)
-
-
 ## Implementation
-The project's implementation uses the same implementation of the original ascii-art project. This therefore affects how input passed by the uses is displayed back to them in the mentioned cases below:
+The project's implementation uses the same implementation of the original ascii-art project. This therefore affects how input passed by the user is displayed back to them in the mentioned cases below:
 
-Occurrences of "\\a", "\\b", "\\v", "\\f", "\\r" or any other character absent in the range of 32 to 126 in the [ASCII manual](https://man.archlinux.org/man/core/man-pages/ascii.7.en) present in the input will result to an error message displayed to the user. This applies for emoji characters.
+Occurrences of "\\a", "\\b", "\\v", "\\f", "\\r" or any other character absent in the range of 32 to 126 in the [ASCII manual](https://man.archlinux.org/man/core/man-pages/ascii.7.en) present in the input will result to a bad request error displayed to the user. This also applies for emoji characters.
 
 ### HTTP Endpoints
 The project uses an HTTP method GET to retrieve users input and uses HTTP method POST to display information from the web server back to the user using the ascii-art URL. Incase of any endpoint failure, an HTTP status code will be displayed to the user. Below are some error codes and what may result them:
 
-**200**: Signifies everything went well without any errors.
+**400**: Signifies the input being processed is invalid.
 
 **404**: Signifies the path being accessed is invalid.
 
