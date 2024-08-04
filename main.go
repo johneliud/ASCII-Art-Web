@@ -39,6 +39,8 @@ func main() {
 	}
 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("img"))))
+
 	http.HandleFunc("/", serverhandlers.HomeHandler)
 	http.HandleFunc("/ascii-art", serverhandlers.AsciiArtHandler)
 
