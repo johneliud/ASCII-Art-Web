@@ -1,18 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
 :root {
   --font-family: 'Josefin Sans', sans-serif;
   --transition: 1s ease;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-family);
 }
+
 .dark-mode {
   background-color: black;
   color: white;
 }
+
 body,
 header,
 header .theme-modes,
@@ -26,6 +30,7 @@ header .theme-modes,
   align-items: center;
   justify-content: space-between;
 }
+
 body {
   width: 90%;
   font-size: 20px;
@@ -33,28 +38,27 @@ body {
   margin: 0 auto;
   padding: 10px 20px;
   transition: var(--transition);
-  /*
-  background-image: url('/img/background.jpeg');
+  background-image: url('/img/background');
   background-size: cover;
-  */
 }
-/*
+
 body::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(134, 134, 134, 0.7);
+  background-color: rgba(134, 134, 134, 0.4);
   z-index: -1;
 }
-*/
+
 header {
   width: 90%;
   margin-bottom: 20px auto;
   padding: 10px;
 }
+
 header .theme-modes {
   width: 10%;
   justify-content: flex-end;
@@ -63,7 +67,8 @@ header .theme-modes {
   cursor: pointer;
   transition: var(--transition);
 }
-header .theme-modes p {
+
+/* header .theme-modes p {
   font-size: 10px;
   color: black;
   border-radius: 10px;
@@ -71,21 +76,27 @@ header .theme-modes p {
   display: none;
   transition: var(--transition);
 }
-header .theme-modes:hover p {
+
+ header .theme-modes:hover p {
   display: flex;
 }
+
 body.dark-mode .theme-modes:hover p {
   color: white;
-}
+} */
+
 header .theme-modes .sunny {
   display: none;
 }
+
 header .theme-modes.active .sunny {
   display: flex;
 }
+
 header .theme-modes.active .moon {
   display: none;
 }
+
 .container {
   width: 90%;
   margin: 20px auto;
@@ -96,24 +107,30 @@ header .theme-modes.active .moon {
   transition: var(--transition);
   background: transparent;
 }
+
 .container.dark-mode {
   box-shadow: 0 0 20px rgb(255, 255, 255);
 }
+
 .container .upper,
 .container .lower {
   width: 95%;
 }
+
 .container .upper {
   display: grid;
   place-items: center;
 }
+
 .container form {
   width: 100%;
   height: 100%;
 }
+
 .container form .left {
   width: 70%;
 }
+
 .container form .left textarea {
   width: 100%;
   padding: 10px;
@@ -123,25 +140,31 @@ header .theme-modes.active .moon {
   outline: none;
   resize: none;
 }
+
 .container form .right {
   width: 25%;
   height: 90%;
   flex-direction: column;
 }
+
 .container form .right div {
   width: 100%;
   justify-content: center;
 }
+
 .container form .right div div:nth-child(1) {
   justify-content: start;
 }
+
 .container form .right div div:nth-child(2) {
   justify-content: end;
 }
+
 .container form .right select {
   padding: 4px 8px;
   font-size: 20px;
 }
+
 .container form .right input {
   width: 100%;
   padding: 5px 15px;
@@ -152,24 +175,38 @@ header .theme-modes.active .moon {
   font-size: 20px;
   cursor: pointer;
 }
+
 .container.dark-mode form .right input {
   background-color: #007bff;
   color: white;
 }
+
 .line {
   width: 80%;
   background-color: black;
   height: 1px;
-  margin: 50px auto 25px;
+  margin: 30px auto 25px;
 }
+
 body.dark-mode .line {
   background-color: white;
 }
+
 .container .lower {
   /* max-width: 95% */
   margin: 5px;
+  padding: 0 5px;
   overflow-x: auto;
+  background-color: white;
+  border-radius: 10px;
+  transition: var(--transition);
 }
+
+.container.dark-mode .lower {
+  background-color: black;
+  color: white;
+}
+
 .container .lower pre {
   width: 100%;
   line-height: 1.2;
@@ -178,7 +215,9 @@ body.dark-mode .line {
   font-family: monospace;
   word-spacing: normal;
   word-break: normal;
+  transition: var(--transition);
 }
+
 footer {
   position: fixed;
   bottom: 20px;
@@ -188,13 +227,16 @@ footer {
   gap: 20px;
   font-size: 25px;
 }
+
 footer a {
   color: black;
   cursor: pointer;
 }
+
 body.dark-mode footer a {
   color: white;
 }
+
 /* Media Queries */
 @media only screen and (max-width: 1399px) {
   .container {
@@ -202,6 +244,7 @@ body.dark-mode footer a {
     padding: 30px 25px;
   }
 }
+
 @media only screen and (max-width: 1199px) {
   body {
     width: 95%;
@@ -215,11 +258,13 @@ body.dark-mode footer a {
     width: 100%;
   }
 }
+
 /* @media only screen and (max-width: 999px) {
   .container {
     width: 100%;
   }
 } */
+
 @media only screen and (max-width: 699px) {
   body {
     width: 100%;
@@ -256,6 +301,7 @@ body.dark-mode footer a {
     display: none;
   }
 }
+
 @media only screen and (max-width: 599px) {
   .container {
     width: 100%;
