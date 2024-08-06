@@ -4,6 +4,7 @@ FROM golang:1.22.5
 # Additional image metadata
 LABEL version="1.0"
 LABEL maintainer="johneliud4@gmail.com"
+LABEL description="An image file for a web server project whose main functionality is accept text as input and display the output using ASCII characters."
 
 # Specify the working directory of the image
 WORKDIR /app
@@ -14,7 +15,7 @@ COPY go.mod ./
 # Download dependencies
 RUN go mod download
 
-# Copy the rest of the files
+# Copy the rest of the source code
 COPY . .
 
 # Command to build an executable
