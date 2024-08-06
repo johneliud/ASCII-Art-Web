@@ -4,7 +4,7 @@ FROM golang:1.22.5
 # Additional image metadata
 LABEL version="1.0"
 LABEL maintainer="johneliud4@gmail.com"
-LABEL description="An image file for a web server project whose main functionality is accept text as input and display the output using ASCII characters."
+LABEL description="An image file for a web server that accepts text as input and displays the output using ASCII characters."
 
 # Specify the working directory of the image
 WORKDIR /app
