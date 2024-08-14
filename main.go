@@ -43,6 +43,7 @@ func main() {
 
 	http.HandleFunc("/", serverhandlers.HomeHandler)
 	http.HandleFunc("/ascii-art", serverhandlers.AsciiArtHandler)
+	http.HandleFunc("/download", serverhandlers.ExportArtToFile)
 
 	log.Printf("Server running on http://localhost%v\n", listeningPort)
 	http.ListenAndServe(listeningPort, nil)
