@@ -3,6 +3,7 @@ package serverhandlers
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"strings"
 
@@ -73,4 +74,32 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	tmpl.Execute(w, data)
+}
+
+// Function ExportArtToFile listens for Get requests on the download button and writes the generated art to a file.
+func ExportArtToFile(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		serve405Page(w, r)
+		return
+	}
+
+	// Extract art from query
+	generatedArt := r.URL.Query().Get("ascii")
+	if generatedArt == "" {
+		serve400Page(w, r)
+		return
+	}
+
+	generatedArtInBytes := []byte(generatedArt)
+
+	w.Header().Set("Content-Type", "text/plain")
+	w.Header().Set("Content-Disposition", `attachment; filename="ascii-art.txt"`)
+	w.Header().Set("Content-Length", fmt.Sprintf("%d", len(generatedArtInBytes)))
+
+	_, err := w.Write(generatedArtInBytes)
+	if err != nil {
+		log.Printf("Error writing ASCII art to response: %v\n", err)
+		serve500Page(w, r)
+		return
+	}
 }
