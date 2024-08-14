@@ -92,7 +92,7 @@ func ExportArtToFile(w http.ResponseWriter, r *http.Request) {
 
 	generatedArtInBytes := []byte(generatedArt)
 
-	w.Header().Set("Content-Type", "text/plain")
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.Header().Set("Content-Disposition", `attachment; filename="ascii-art.txt"`)
 	w.Header().Set("Content-Length", fmt.Sprintf("%d", len(generatedArtInBytes)))
 
