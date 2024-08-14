@@ -24,7 +24,7 @@
               name="input"
               id="inputArea"
               cols="30"
-              rows="10"
+              rows="6"
               placeholder="Enter input"
               required
             >
@@ -53,6 +53,16 @@
         <!-- {{if .AsciiArt}}     -->
         <pre>{{.AsciiArt}}</pre>
         <!-- {{end}} -->
+      </div>
+
+      <div class="download">
+        {{if .AsciiArt}}
+        <a
+          href="/download?ascii={{urlquery .AsciiArt}}"
+          download="ascii-art.txt"
+          >Download Art</a
+        >
+        {{end}}
       </div>
     </div>
     <footer>
