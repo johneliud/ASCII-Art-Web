@@ -68,23 +68,6 @@ header .theme-modes {
   transition: var(--transition);
 }
 
-/* header .theme-modes p {
-  font-size: 10px;
-  color: black;
-  border-radius: 10px;
-  padding: 3px 0;
-  display: none;
-  transition: var(--transition);
-}
-
- header .theme-modes:hover p {
-  display: flex;
-}
-
-body.dark-mode .theme-modes:hover p {
-  color: white;
-} */
-
 header .theme-modes .sunny {
   display: none;
 }
@@ -105,11 +88,13 @@ header .theme-modes.active .moon {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   flex-direction: column;
   transition: var(--transition);
-  background: transparent;
+  background: white;
 }
 
 .container.dark-mode {
   box-shadow: 0 0 20px rgb(255, 255, 255);
+  background-color: black;
+  color: white;
 }
 
 .container .upper,
@@ -135,10 +120,17 @@ header .theme-modes.active .moon {
   width: 100%;
   padding: 10px;
   font-size: 20px;
+  background-color: white;
   border: 1px solid black;
   border-radius: 10px;
   outline: none;
   resize: none;
+  transition: var(--transition);
+}
+.container.dark-mode form .left textarea {
+  color: white;
+  background-color: black;
+  box-shadow: 0 0 5px rgb(255, 255, 255);
 }
 
 .container form .right {
@@ -215,7 +207,24 @@ body.dark-mode .line {
   font-family: monospace;
   word-spacing: normal;
   word-break: normal;
+  max-height: 35vh;
+  overflow-y: scroll;
   transition: var(--transition);
+}
+
+.container .download {
+  margin: 15px auto 0;
+}
+
+.container .download a {
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  padding: 5px 25px;
+  border-radius: 10px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
 }
 
 footer {
