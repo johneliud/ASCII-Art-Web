@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/johneliud/ASCII-Art-Web/generaterandomname"
 	"github.com/johneliud/ASCII-Art-Web/printart"
 	"github.com/johneliud/ASCII-Art-Web/readandprocess"
 )
@@ -77,27 +78,26 @@ func AsciiArtHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // Function ExportArtToFile listens for Get requests on the download button and writes the generated art to a file.
+// Function ExportArtToFile listens for Get requests on the download button and writes the generated art to a file.
 func ExportArtToFile(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		serve405Page(w, r)
 		return
 	}
 
-	// Extract art from query
-	generatedArt := r.URL.Query().Get("ascii")
-	if generatedArt == "" {
+	asciiArt := r.URL.Query().Get("ascii")
+	if asciiArt == "" {
 		serve400Page(w, r)
 		return
 	}
 
-	generatedArtInBytes := []byte(generatedArt)
+	fileName := "ascii-" + generaterandomname.GenerateRandomName() + ".txt"
 
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	w.Header().Set("Content-Disposition", `attachment; filename="ascii-art.txt"`)
-	w.Header().Set("Content-Length", fmt.Sprintf("%d", len(generatedArtInBytes)))
+	w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", fileName))
+	w.Header().Set("Content-Length", fmt.Sprintf("%d", len(asciiArt)))
 
-	_, err := w.Write(generatedArtInBytes)
-	if err != nil {
+	if _, err := w.Write([]byte(asciiArt)); err != nil {
 		log.Printf("Error writing ASCII art to response: %v\n", err)
 		serve500Page(w, r)
 		return
